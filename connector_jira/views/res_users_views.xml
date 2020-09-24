@@ -9,6 +9,7 @@
       <xpath expr="//notebook" position="inside">
         <page string="Connector" name="connector">
           <group string="Jira">
+            <field name="jira_username"/>
             <field name="jira_bind_ids" nolabel="1"/>
           </group>
         </page>
@@ -26,7 +27,6 @@
     <field name="arch" type="xml">
       <form string="Jira User">
         <group>
-          <field name="jira_username"/>
           <field name="backend_id"/>
           <field name="external_id"/>
         </group>
