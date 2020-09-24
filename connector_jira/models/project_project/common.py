@@ -97,7 +97,6 @@ class JiraProjectProject(models.Model):
     # we need to override the in connector_jira_service_desk and it would try
     # to create it again at every update because of the base implementation
     # in the binding's parent model.
-    @api.model_cr
     def _add_sql_constraints(self):
         # we replace the sql constraint by a python one
         # to include the organizations
