@@ -32,5 +32,5 @@
               res_model="task.link.jira"
               src_model="project.task"
               groups="project.group_project_manager"
-              view_mode="form" target="new" view_type="form" />
+              view_mode="form" target="new" />
 </odoo>
