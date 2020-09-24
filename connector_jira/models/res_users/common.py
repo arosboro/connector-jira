@@ -75,7 +75,7 @@ class ResUsers(models.Model):
                             'key': resolve_by_key,
                             'value': resolve_by_value,
                             'error': 'multiple_found',
-                            'detail': [x.key for x in jira_user]
+                            'detail': [x.accountId for x in jira_user]
                         })
                         continue
                     jira_user = jira_user[0]
