@@ -24,6 +24,7 @@ class JiraResUsers(models.Model):
 class ResUsers(models.Model):
     _inherit = 'res.users'
 
+    jira_username = fields.Char()
     jira_bind_ids = fields.One2many(
         comodel_name='jira.res.users',
         inverse_name='odoo_id',

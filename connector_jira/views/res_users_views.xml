@@ -26,6 +26,7 @@
     <field name="arch" type="xml">
       <form string="Jira User">
         <group>
+          <field name="jira_username"/>
           <field name="backend_id"/>
           <field name="external_id"/>
         </group>

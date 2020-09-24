@@ -526,7 +526,7 @@ class JiraBackend(models.Model):
     def get_user_resolution_order(self):
         """ User resolution should happen by login first as it's unique, while
         resolving by email is likely to give false positives """
-        return ['login', 'email']
+        return ['login', 'email', 'jira_username']
 
     def import_issue_type(self):
         self.env['jira.issue.type'].import_batch(self)
