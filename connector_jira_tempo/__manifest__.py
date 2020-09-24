@@ -2,7 +2,7 @@
 
 {
     'name': 'JIRA Connector Tempo',
-    'version': '12.0.2.1.1',
+    'version': '13.0.2.1.1',
     'author':
         'Camptocamp, '
         'Odoo Community Association (OCA)',

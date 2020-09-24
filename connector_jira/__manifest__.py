@@ -2,7 +2,7 @@
 
 {
     'name': 'JIRA Connector',
-    'version': '12.0.1.7.0',
+    'version': '13.0.1.7.0',
     'author': 'Camptocamp,Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'category': 'Connector',
