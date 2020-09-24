@@ -36,7 +36,6 @@ class JiraBackend(models.Model):
              "all approved timesheets will be validated on Odoo as well."
     )
 
-    @api.multi
     def _scheduler_sync_tempo_timesheets_approval_status(
             self, period_start=None):
         """Synchronize JIRA Tempo timesheet status on Odoo TS lines.
