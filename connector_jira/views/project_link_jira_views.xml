@@ -59,7 +59,7 @@
   <act_window id="open_project_link_jira"
               name="Link with JIRA"
               res_model="project.link.jira"
-              src_model="project.project"
+              binding_model="project.project"
               groups="project.group_project_manager"
               view_mode="form" target="new" />
 </odoo>
