@@ -10,8 +10,11 @@
         <page string="Connector" name="connector">
           <group string="Jira">
             <field name="jira_username"/>
-            <field name="jira_bind_ids" nolabel="1"/>
+            <group>
+              <field name="jira_bind_ids" nolabel="1"/>
+            </group>
           </group>
+
         </page>
       </xpath>
 

@@ -83,7 +83,7 @@ class ResUsers(models.Model):
                         active_test=False,
                     ).search([
                         ('backend_id', '=', backend.id),
-                        ('external_id', '=', jira_user.key),
+                        ('external_id', '=', jira_user.accountId),
                         ('odoo_id', '!=', user.id),
                     ])
                     if existing:
@@ -99,11 +99,11 @@ class ResUsers(models.Model):
                             'backend_id': backend.id,
                             'odoo_id': user.id,
                         })
-                        binder.bind(jira_user.key, binding)
+                        binder.bind(jira_user.accountId, binding)
                         bknd_result['success'].append({
                             'key': 'login',
                             'value': user.login,
-                            'detail': jira_user.key,
+                            'detail': jira_user.accountId,
                         })
                     except Exception as err:
                         bknd_result['error'].append({
@@ -136,7 +136,7 @@ class UserAdapter(Component):
         # that same user is present in multiple User Directories
         users = list(map(
             lambda group: list(group[1])[0],
-            groupby(users, key=lambda user: user.key)
+            groupby(users, key=lambda user: user.accountId)
         ))
 
         return users
