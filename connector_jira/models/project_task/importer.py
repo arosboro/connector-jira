@@ -65,9 +65,9 @@ class ProjectTaskMapper(Component):
             # Do to GDPR email_address has been deprecated and removed.
             # email = assignee['emailAddress']
             raise MappingError(
-                _('No user found with login "%s" or email "%s".'
+                _('No user found with login "%s".'
                   'You must create a user or link it manually if the '
-                  'login/email differs.') % (jira_key, email)
+                  'login/email differs.') % jira_key
             )
         return {'user_id': user.id}
 
