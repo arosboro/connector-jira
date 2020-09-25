@@ -34,6 +34,7 @@ DeletedWorklogSince = namedtuple(
 
 class JiraAccountAnalyticLine(models.Model):
     _name = 'jira.account.analytic.line'
+    _description = 'Jira Account Analytic Line'
     _inherit = 'jira.binding'
     _inherits = {'account.analytic.line': 'odoo_id'}
     _description = 'Jira Worklog'
@@ -247,6 +248,7 @@ class AccountAnalyticLine(models.Model):
 
 class WorklogAdapter(Component):
     _name = 'jira.worklog.adapter'
+    _description = 'Jira Worklog Adapter'
     _inherit = 'jira.webservice.adapter'
     _apply_on = ['jira.account.analytic.line']
 

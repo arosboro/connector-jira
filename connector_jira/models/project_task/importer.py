@@ -10,6 +10,7 @@ from odoo.addons.component.core import Component
 
 class ProjectTaskMapper(Component):
     _name = 'jira.project.task.mapper'
+    _description = 'Jira Project Task Mapper'
     _inherit = 'jira.import.mapper'
     _apply_on = ['jira.project.task']
 
@@ -152,12 +153,14 @@ class ProjectTaskBatchImporter(Component):
     Import from a date
     """
     _name = 'jira.project.task.batch.importer'
+    _description = 'Jira Project Task Batch Importer'
     _inherit = ['jira.timestamp.batch.importer']
     _apply_on = ['jira.project.task']
 
 
 class ProjectTaskProjectMatcher(Component):
     _name = 'jira.task.project.matcher'
+    _description = 'Jira Task Project Matcher'
     _inherit = ['jira.base']
     _usage = 'jira.task.project.matcher'
 
@@ -172,6 +175,7 @@ class ProjectTaskProjectMatcher(Component):
 
 class ProjectTaskImporter(Component):
     _name = 'jira.project.task.importer'
+    _description = 'Jira Project Task Importer'
     _inherit = ['jira.importer']
     _apply_on = ['jira.project.task']
 

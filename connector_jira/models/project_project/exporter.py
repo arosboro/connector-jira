@@ -7,6 +7,7 @@ from odoo.addons.component_event import skip_if
 
 class JiraProjectProjectListener(Component):
     _name = 'jira.project.project.listener'
+    _description = 'Jira Project Project Listener'
     _inherit = ['base.connector.listener']
     _apply_on = ['jira.project.project']
 
@@ -23,6 +24,7 @@ class JiraProjectProjectListener(Component):
 
 class ProjectProjectListener(Component):
     _name = 'project.project.listener'
+    _description = 'Project Project Listener'
     _inherit = ['base.connector.listener']
     _apply_on = ['project.project']
 
@@ -47,6 +49,7 @@ class ProjectProjectListener(Component):
 
 class JiraProjectProjectExporter(Component):
     _name = 'jira.project.project.exporter'
+    _description = 'Jira Project Project Exporter'
     _inherit = ['jira.exporter']
     _apply_on = ['jira.project.project']
 

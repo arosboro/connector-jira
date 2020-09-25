@@ -8,6 +8,7 @@ from odoo.addons.queue_job.exception import JobError
 
 class UserImporter(Component):
     _name = 'jira.res.users.importer'
+    _description = 'Jira Users Importer'
     _inherit = ['jira.importer']
     _apply_on = ['jira.res.users']
 

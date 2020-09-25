@@ -30,6 +30,7 @@ class JiraBaseExporter(AbstractComponent):
     """ Base exporter for Jira """
 
     _name = 'jira.base.exporter'
+    _description = 'Jira Base Exporter'
     _inherit = ['base.exporter', 'jira.base']
     _usage = 'record.exporter'
 
@@ -123,6 +124,7 @@ class JiraExporter(Component):
     used.
     """
     _name = 'jira.exporter'
+    _description = 'Jira Exporter'
     _inherit = ['jira.base.exporter']
     _usage = 'record.exporter'
 

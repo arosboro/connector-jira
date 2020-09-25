@@ -652,6 +652,7 @@ class JiraBackendTimestamp(models.Model):
 
 class BackendAdapter(Component):
     _name = 'jira.backend.adapter'
+    _description = 'Jira Backend Adapter'
     _inherit = 'jira.webservice.adapter'
     _apply_on = ['jira.backend']
 

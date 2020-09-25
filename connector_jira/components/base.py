@@ -11,5 +11,6 @@ class BaseJiraConnectorComponent(AbstractComponent):
     """
 
     _name = 'jira.base'
+    _description = 'Base Jira Connector Component'
     _inherit = 'base.connector'
     _collection = 'jira.backend'

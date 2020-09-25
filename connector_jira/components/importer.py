@@ -47,6 +47,7 @@ class JiraImporter(Component):
     """
 
     _name = 'jira.importer'
+    _description = 'Jira Importer'
     _inherit = ['base.importer', 'jira.base']
     _usage = 'record.importer'
 

@@ -294,6 +294,7 @@ class ProjectProject(models.Model):
 class ProjectAdapter(Component):
 
     _name = 'jira.project.adapter'
+    _description = 'Jira Project Adapter'
     _inherit = ['jira.webservice.adapter']
     _apply_on = ['jira.project.project']
 

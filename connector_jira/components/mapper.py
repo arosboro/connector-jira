@@ -14,6 +14,7 @@ class JiraImportMapper(AbstractComponent):
     """Base Import Mapper for Jira """
 
     _name = 'jira.import.mapper'
+    _description = 'Jira Import Mapper'
     _inherit = ['base.import.mapper', 'jira.base']
 
     @mapping
@@ -166,6 +167,7 @@ def whenempty(field, default_value):
 
 class FromFields(Component):
     _name = 'jira.mapper.from.attrs'
+    _description = 'Jira Mapper From Attrs'
     _inherit = ['jira.base']
     _usage = 'map.from.attrs'
 

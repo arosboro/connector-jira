@@ -11,6 +11,7 @@ _logger = logging.getLogger(__name__)
 
 class JiraProjectBinder(Component):
     _name = 'jira.project.binder'
+    _description = 'Jira Project Binder'
     _inherit = 'jira.binder'
 
     _apply_on = [

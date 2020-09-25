@@ -37,6 +37,7 @@ class JiraIssueType(models.Model):
 
 class IssueTypeAdapter(Component):
     _name = 'jira.issue.type.adapter'
+    _description = 'Jira Issue Type Adapter'
     _inherit = ['jira.webservice.adapter']
     _apply_on = ['jira.issue.type']
 

@@ -23,6 +23,7 @@ class JiraBinder(Component):
     """
 
     _name = 'jira.binder'
+    _description = 'Jira Binder'
     _inherit = ['base.binder', 'jira.base']
 
     def sync_date(self, binding):
@@ -42,6 +43,7 @@ class JiraModelBinder(Component):
 
     """
     _name = 'jira.model.binder'
+    _description = 'Jira Model Binder'
     _inherit = ['base.binder', 'jira.base']
 
     _apply_on = [

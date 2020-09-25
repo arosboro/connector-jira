@@ -118,6 +118,7 @@ class ResUsers(models.Model):
 
 class UserAdapter(Component):
     _name = 'jira.res.users.adapter'
+    _description = 'Jira Users Adapter'
     _inherit = ['jira.webservice.adapter']
     _apply_on = ['jira.res.users']
 

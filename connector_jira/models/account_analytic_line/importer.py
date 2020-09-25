@@ -19,6 +19,7 @@ _logger = logging.getLogger(__name__)
 
 class AnalyticLineMapper(Component):
     _name = 'jira.analytic.line.mapper'
+    _description = 'Jira Analytic Line Mapper'
     _inherit = 'jira.import.mapper'
     _apply_on = ['jira.account.analytic.line']
 
@@ -128,6 +129,7 @@ class AnalyticLineBatchImporter(Component):
     Import from a date
     """
     _name = 'jira.analytic.line.batch.importer'
+    _description = 'Jira Analytic Line Batch Importer'
     _inherit = 'jira.timestamp.batch.importer'
     _apply_on = ['jira.account.analytic.line']
 
@@ -198,6 +200,7 @@ class AnalyticLineBatchImporter(Component):
 
 class AnalyticLineImporter(Component):
     _name = 'jira.analytic.line.importer'
+    _description = 'Jira Analytic Line Importer'
     _inherit = 'jira.importer'
     _apply_on = ['jira.account.analytic.line']
 

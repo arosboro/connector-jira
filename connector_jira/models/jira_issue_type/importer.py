@@ -8,6 +8,7 @@ from odoo.addons.component.core import Component
 
 class IssueTypeMapper(Component):
     _name = 'jira.issue.type.mapper'
+    _description = 'Jira Issue Type Mapper'
     _inherit = ['jira.import.mapper']
     _apply_on = 'jira.issue.type'
 
@@ -28,6 +29,7 @@ class IssueTypeBatchImporter(Component):
     Import from a date
     """
     _name = 'jira.issue.type.batch.importer'
+    _description = 'Jira Issue Type Batch Importer'
     _inherit = 'jira.direct.batch.importer'
     _apply_on = ['jira.issue.type']
 

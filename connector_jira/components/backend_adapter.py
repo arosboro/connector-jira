@@ -25,6 +25,7 @@ JIRA_JQL_DATETIME_FORMAT = '%Y-%m-%d %H:%M'  # no seconds :-(
 class JiraAdapter(Component):
     """ Generic adapter for using the JIRA backend """
     _name = 'jira.webservice.adapter'
+    _description = 'Jira Webservice Adapter'
     _inherit = ['base.backend.adapter.crud', 'jira.base']
     _usage = 'backend.adapter'
 

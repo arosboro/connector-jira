@@ -22,6 +22,7 @@ class AnalyticLineBatchDeleter(Component):
     """
 
     _name = 'jira.analytic.line.timestamp.batch.deleter'
+    _description = 'Jira Analytic Line Timestamp Batch Deleter'
     _inherit = ['base.synchronizer', 'jira.base']
     _usage = 'timestamp.batch.deleter'
 

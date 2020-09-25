@@ -252,6 +252,7 @@ class ProjectTask(models.Model):
 
 class TaskAdapter(Component):
     _name = 'jira.project.task.adapter'
+    _description = 'Jira Project Task Adapter'
     _inherit = ['jira.webservice.adapter']
     _apply_on = ['jira.project.task']
 
