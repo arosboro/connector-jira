@@ -159,8 +159,10 @@ class AccountAnalyticLine(models.Model):
 
     @api.depends(
         'jira_bind_ids.jira_issue_key',
+        'jira_bind_ids.jira_issue_url',
         'jira_bind_ids.jira_issue_type_id',
         'jira_bind_ids.jira_epic_issue_key',
+        'jira_bind_ids.jira_epic_issue_url',
     )
     def _compute_jira_references(self):
         """Compute the various references to JIRA.
