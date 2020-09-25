@@ -591,7 +591,6 @@ class JiraBackendTimestamp(models.Model):
     last_timestamp = MilliDatetime(
         string='Last Timestamp',
         required=True,
-        oldname="import_start_time",
     )
     # The content of this field must match to the "usage" of a component.
     # The method JiraBinding.run_batch_timestamp() will find the matching
