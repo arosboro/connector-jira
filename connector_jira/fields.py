@@ -56,7 +56,7 @@ class MilliDatetime(fields.Field):
             value.microsecond / 1000
         )
 
-    def convert_to_cache(self, value, record, validate=True):
+    def _convert_to_cache(self, value, record, validate=True):
         if not value:
             return False
         if isinstance(value, date) and not isinstance(value, datetime):
