@@ -133,38 +133,34 @@ class AccountAnalyticLine(models.Model):
     # fields needed to display JIRA issue link in views
     jira_issue_key = fields.Char(
         string='Original JIRA Issue Key',
-        compute='_compute_jira_references',
+        compute='_compute_jira_references_issue_key',
         store=True,
     )
     jira_issue_url = fields.Char(
         string='Original JIRA issue Link',
-        compute='_compute_jira_references',
+        compute='_compute_jira_references_issue_url',
     )
     jira_epic_issue_key = fields.Char(
-        compute='_compute_jira_references',
+        compute='_compute_jira_references_epic_issue_key',
         string='Original JIRA Epic Key',
         store=True,
     )
     jira_epic_issue_url = fields.Char(
         string='Original JIRA Epic Link',
-        compute='_compute_jira_references',
+        compute='_compute_jira_references_epic_issue_url',
     )
 
     jira_issue_type_id = fields.Many2one(
         comodel_name='jira.issue.type',
         string='Original JIRA Issue Type',
-        compute='_compute_jira_references',
+        compute='_compute_jira_references_issue_type_id',
         store=True
     )
 
     @api.depends(
         'jira_bind_ids.jira_issue_key',
-        'jira_bind_ids.jira_issue_url',
-        'jira_bind_ids.jira_issue_type_id',
-        'jira_bind_ids.jira_epic_issue_key',
-        'jira_bind_ids.jira_epic_issue_url',
     )
-    def _compute_jira_references(self):
+    def _compute_jira_references_issue_key(self):
         """Compute the various references to JIRA.
 
         We assume that we have only one external record for a line
@@ -174,9 +170,61 @@ class AccountAnalyticLine(models.Model):
                 continue
             main_binding = record.jira_bind_ids[0]
             record.jira_issue_key = main_binding.jira_issue_key
+
+    @api.depends(
+        'jira_bind_ids.jira_issue_url',
+    )
+    def _compute_jira_references_issue_url(self):
+        """Compute the various references to JIRA.
+
+        We assume that we have only one external record for a line
+        """
+        for record in self:
+            if not record.jira_bind_ids:
+                continue
+            main_binding = record.jira_bind_ids[0]
             record.jira_issue_url = main_binding.jira_issue_url
+
+    @api.depends(
+        'jira_bind_ids.jira_issue_type_id',
+    )
+    def _compute_jira_references_issue_type_id(self):
+        """Compute the various references to JIRA.
+
+        We assume that we have only one external record for a line
+        """
+        for record in self:
+            if not record.jira_bind_ids:
+                continue
+            main_binding = record.jira_bind_ids[0]
             record.jira_issue_type_id = main_binding.jira_issue_type_id
+
+    @api.depends(
+        'jira_bind_ids.jira_epic_issue_key',
+    )
+    def _compute_jira_references_epic_issue_key(self):
+        """Compute the various references to JIRA.
+
+        We assume that we have only one external record for a line
+        """
+        for record in self:
+            if not record.jira_bind_ids:
+                continue
+            main_binding = record.jira_bind_ids[0]
             record.jira_epic_issue_key = main_binding.jira_epic_issue_key
+
+    @api.depends(
+        'jira_bind_ids.jira_epic_issue_url',
+    )
+    def _compute_jira_references_epic_issue_url(self):
+        """Compute the various references to JIRA.
+
+        We assume that we have only one external record for a line
+        """
+        for record in self:
+            if not record.jira_bind_ids:
+                continue
+            main_binding = record.jira_bind_ids[0]
             record.jira_epic_issue_url = main_binding.jira_epic_issue_url
 
     @api.model
