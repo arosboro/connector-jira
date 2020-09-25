@@ -58,7 +58,7 @@ class ProjectTaskMapper(Component):
         assignee = record['fields'].get('assignee')
         if not assignee:
             return {'user_id': False}
-        jira_key = assignee['key']
+        jira_key = assignee['accountId']
         binder = self.binder_for('jira.res.users')
         user = binder.to_internal(jira_key, unwrap=True)
         if not user:
