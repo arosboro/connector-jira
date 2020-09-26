@@ -48,7 +48,7 @@ class WorklogAdapter(Component):
 
     def tempo_timesheets_approval_read_status_by_team(
             self, team_id, period_start):
-        url = self._tempo_timesheets_get_url('timesheet-approval')
+        url = self._tempo_timesheets_get_url('timesheet-approval/log')
         with self.handle_404():
             response = self.client._session.get(url, params={
                 'teamId': team_id,

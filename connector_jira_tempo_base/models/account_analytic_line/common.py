@@ -8,7 +8,7 @@ from odoo.addons.component.core import Component
 class WorklogAdapter(Component):
     _inherit = 'jira.worklog.adapter'
 
-    _tempo_timesheets_api_path_base = '{server}/rest/tempo-timesheets/3/{path}'
+    _tempo_timesheets_api_path_base = '{server}/rest/tempo-timesheets/4/{path}'
 
     def _tempo_timesheets_get_url(self, path):
         return self.client._get_url(
