@@ -28,7 +28,7 @@ class WorklogAdapter(Component):
         if self.env.context.get(
                 'jira_worklog_no_tempo_timesheets_approval_data'):
             return worklog
-        with self.handle_404():
+        with self.handle_tempo_404():
             worklog['_tempo_timesheets_approval'] = \
                 self.tempo_timesheets_approval_read(worklog)
         return worklog
@@ -41,12 +41,12 @@ class WorklogAdapter(Component):
 
     def tempo_timesheets_approval_read(self, worklog):
         account_id = worklog['author']['accountId']
-        with self.handle_404():
+        with self.handle_tempo_404():
             response = self.tempo.get_timesheet_approvals(userId=account_id)
         return json.dumps(response, iterable_as_array=True)
 
     def tempo_timesheets_approval_read_status_by_team(
             self, team_id, period_start):
-        with self.handle_404():
+        with self.handle_tempo_404():
             response = self.tempo.get_timesheet_approvals(dateFrom=period_start, teamId=team_id)
         return json.dumps(response, iterable_as_array=True)

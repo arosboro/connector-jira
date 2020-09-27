@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import logging
+import requests
 
 from odoo.addons.component.core import Component
 
@@ -23,3 +24,20 @@ class JiraAdapter(Component):
         if not self._tempo:
             self._tempo = self.backend_record.get_tempo_client()
         return self._tempo
+
+    @contextmanager
+    def handle_tempo_404(self):
+        """Context manager to handle 404 errors on the API
+
+        404 (no record found) on the API are re-raised as:
+        ``odoo.addons.connector.exception.IDMissingInBackend``
+        """
+        try:
+            yield
+        except requests.exceptions.HTTPError as err:
+            if err.response.status_code == 404:
+                raise IDMissingInBackend("{} (url: {})".format(
+                    err.response.text,
+                    err.response.url,
+                ))
+            raise
