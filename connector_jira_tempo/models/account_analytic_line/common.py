@@ -72,8 +72,8 @@ class WorklogAdapter(Component):
         with self.handle_tempo_404():
             date_to = datetime.strptime(period_start, '%Y-%m-%d') + timedelta(days=6)
             response = self.tempo.get_timesheet_approvals(dateFrom=period_start, dateTo=date_to, teamId=team_id)
-            _logger.info("%s", json.dumps(response, iterable_as_array=True))
             result = []
             for record in response:
                 result.append(record)
+            _logger.info("%s", json.dumps(result))
         return json.dumps(result[0])
