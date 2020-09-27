@@ -4,6 +4,8 @@
 import logging
 import requests
 
+from contextlib import contextmanager
+
 from odoo.addons.component.core import Component
 
 _logger = logging.getLogger(__name__)
