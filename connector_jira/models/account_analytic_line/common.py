@@ -94,7 +94,7 @@ class JiraAccountAnalyticLine(models.Model):
             :param validate: whether values must be checked
         """
         fields = self._fields
-        target = self if update else self.browse([], self._prefetch)
+        target = self if update else self.browse([self.id])
         return {
             name: fields[name].convert_to_cache(value, target, validate=validate)
             for name, value in values.items()
