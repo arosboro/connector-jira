@@ -5,6 +5,7 @@
 from odoo import fields, models
 from odoo.addons.component.core import Component
 
+import json
 
 class AccountAnalyticLine(models.Model):
     _inherit = 'account.analytic.line'
@@ -42,10 +43,10 @@ class WorklogAdapter(Component):
         account_id = worklog['author']['accountId']
         with self.handle_404():
             response = self.tempo.get_timesheet_approvals(userId=account_id)
-        return response.json()
+        return json.dumps(response)
 
     def tempo_timesheets_approval_read_status_by_team(
             self, team_id, period_start):
         with self.handle_404():
             response = self.tempo.get_timesheet_approvals(dateFrom=period_start, teamId=team_id)
-        return response.json()
+        return json.dumps(response)
