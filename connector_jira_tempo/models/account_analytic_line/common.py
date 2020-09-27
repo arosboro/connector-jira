@@ -6,8 +6,12 @@ from odoo import fields, models
 from odoo.addons.component.core import Component
 
 import simplejson as json
+import logging
 
 from datetime import datetime, timedelta
+
+
+_logger = logging.getLogger(__name__)
 
 class AccountAnalyticLine(models.Model):
     _inherit = 'account.analytic.line'
@@ -68,4 +72,5 @@ class WorklogAdapter(Component):
         with self.handle_tempo_404():
             date_to = datetime.strptime(period_start, '%Y-%m-%d') + timedelta(days=6)
             response = self.tempo.get_timesheet_approvals(dateFrom=period_start, dateTo=date_to, teamId=team_id)
+            _logger.info(%s, json.dumps(response, iterable_as_array=True))
         return json.dumps(response, iterable_as_array=True)
