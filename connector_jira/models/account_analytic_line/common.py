@@ -34,7 +34,6 @@ DeletedWorklogSince = namedtuple(
 
 class JiraAccountAnalyticLine(models.Model):
     _name = 'jira.account.analytic.line'
-    _description = 'Jira Account Analytic Line'
     _inherit = 'jira.binding'
     _inherits = {'account.analytic.line': 'odoo_id'}
     _description = 'Jira Worklog'
@@ -88,6 +87,7 @@ class JiraAccountAnalyticLine(models.Model):
     ]
 
     def _convert_to_cache(self, values, update=False, validate=True):
+        self.ensure_one()
         """ Convert the ``values`` dictionary into cached values.
             :param update: whether the conversion is made for updating ``self``;
                 this is necessary for interpreting the commands of *2many fields
