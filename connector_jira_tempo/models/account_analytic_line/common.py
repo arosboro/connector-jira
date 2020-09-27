@@ -7,6 +7,8 @@ from odoo.addons.component.core import Component
 
 import simplejson as json
 
+from datetime import datetime
+
 class AccountAnalyticLine(models.Model):
     _inherit = 'account.analytic.line'
 
@@ -42,11 +44,14 @@ class WorklogAdapter(Component):
     def tempo_timesheets_approval_read(self, worklog):
         account_id = worklog['author']['accountId']
         with self.handle_tempo_404():
-            response = self.tempo.get_timesheet_approvals(userId=account_id)
+            date_from = datetime(1969, 12, 31, 19, 00, 00, 00000)
+            date_to = datetime.now()
+            response = self.tempo.get_timesheet_approvals(dateFrom=date_from, dateTo=date_to, userId=account_id)
         return json.dumps(response, iterable_as_array=True)
 
     def tempo_timesheets_approval_read_status_by_team(
             self, team_id, period_start):
         with self.handle_tempo_404():
-            response = self.tempo.get_timesheet_approvals(dateFrom=period_start, teamId=team_id)
+            date_to = datetime.now()
+            response = self.tempo.get_timesheet_approvals(dateFrom=period_start, dateTo=date_to, teamId=team_id)
         return json.dumps(response, iterable_as_array=True)

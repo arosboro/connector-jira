@@ -6,7 +6,7 @@ from odoo.addons.component.core import Component
 
 import simplejson as json
 
-from datetime import datetime, timedelta
+from datetime import datetime
 
 class WorklogAdapter(Component):
     _inherit = 'jira.worklog.adapter'
@@ -23,7 +23,7 @@ class WorklogAdapter(Component):
 
     def tempo_timesheets_read(self, worklog_id):
         with self.handle_tempo_404():
-            dateFrom = datetime(1969, 12, 31, 19, 00, 00, 00000)
-            dateTo = datetime.now()
-            response = self.tempo.get_worklogs(dateFrom, dateTo, jiraWorklogId=worklog_id)
+            date_from = datetime(1969, 12, 31, 19, 00, 00, 00000)
+            date_to = datetime.now()
+            response = self.tempo.get_worklogs(date_from, date_to, jiraWorklogId=worklog_id)
         return json.dumps(response, iterable_as_array=True)
