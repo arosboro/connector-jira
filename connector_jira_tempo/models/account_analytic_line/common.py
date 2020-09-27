@@ -51,15 +51,21 @@ class WorklogAdapter(Component):
 
     def tempo_timesheets_approval_read(self, worklog):
         account_id = worklog['author']['accountId']
-        with self.handle_tempo_404():
-            date_from = self.prior_week_start()
-            date_to = self.prior_week_end()
-            response = self.tempo.get_timesheet_approvals(dateFrom=date_from, dateTo=date_to, userId=account_id)
-        return json.dumps(response, iterable_as_array=True)
+        date_from = datetime.now() - timedelta(days=364)
+        date_to = datetime.now()
+        prefetch = self.tempo.get_periods(date_from, date_to)
+        result = []
+        for period in prefetch:
+            with self.handle_tempo_404():
+                response = self.tempo.get_timesheet_approvals(dateFrom=period['from'], dateTo=period['to'],
+                                                              userId=account_id)
+                for approval in response:
+                    result.append(approval)
+        return json.dumps(result)
 
     def tempo_timesheets_approval_read_status_by_team(
             self, team_id, period_start):
         with self.handle_tempo_404():
-            date_to = period_start + timedelta(days=6)
+            date_to = datetime.strptime(period_start, '%Y-%m-%d') + timedelta(days=6)
             response = self.tempo.get_timesheet_approvals(dateFrom=period_start, dateTo=date_to, teamId=team_id)
         return json.dumps(response, iterable_as_array=True)
