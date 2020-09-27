@@ -65,7 +65,7 @@ class WorklogAdapter(Component):
                                                               userId=account_id)
                 for approval in response:
                     result.append(approval)
-        return json.dumps(result)
+        return result
 
     def tempo_timesheets_approval_read_status_by_team(
             self, team_id, period_start):
@@ -76,4 +76,4 @@ class WorklogAdapter(Component):
             for record in response:
                 result.append(record)
             _logger.info("%s", json.dumps(result))
-        return json.dumps(result[0])
+        return result[0]
