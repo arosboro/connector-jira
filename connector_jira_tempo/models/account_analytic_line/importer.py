@@ -9,10 +9,10 @@ from odoo.addons.component.core import Component
 class AnalyticLineMapper(Component):
     _inherit = 'jira.analytic.line.mapper'
 
-    @mapping
-    def tempo_timesheets_approval(self, record):
-        approval = record['_tempo_timesheets_approval']
-        values = {
-            'jira_tempo_status': approval['status'],
-        }
-        return values
+    # @mapping
+    # def tempo_timesheets_approval(self, record):
+    #     approval = record['_tempo_timesheets_approval']
+    #     values = {
+    #         'jira_tempo_status': approval['status'],
+    #     }
+    #     return values
