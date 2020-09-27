@@ -67,7 +67,7 @@ class ProjectTaskMapper(Component):
             raise MappingError(
                 _('No user found with login "%s".'
                   'You must create a user or link it manually if the '
-                  'login/email differs.') % jira_key
+                  'login differs.') % jira_key
             )
         return {'user_id': user.id}
 

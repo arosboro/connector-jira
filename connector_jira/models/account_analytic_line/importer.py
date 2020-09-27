@@ -81,7 +81,7 @@ class AnalyticLineMapper(Component):
             raise MappingError(
                 _('No user found with login "%s".'
                   'You must create a user or link it manually if the '
-                  'login/email differs.') % (jira_author_key, email)
+                  'login differs.') % jira_author_key
             )
         employee = self.env['hr.employee'].with_context(
             active_test=False,
