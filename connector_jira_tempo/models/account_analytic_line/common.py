@@ -34,9 +34,9 @@ class WorklogAdapter(Component):
         if self.env.context.get(
                 'jira_worklog_no_tempo_timesheets_approval_data'):
             return worklog
-        with self.handle_tempo_404():
-            worklog['_tempo_timesheets_approval'] = \
-                self.tempo_timesheets_approval_read(worklog)
+        # with self.handle_tempo_404():
+        #     worklog['_tempo_timesheets_approval'] = \
+        #         self.tempo_timesheets_approval_read(worklog)
         return worklog
 
     @staticmethod
@@ -73,4 +73,4 @@ class WorklogAdapter(Component):
             date_to = datetime.strptime(period_start, '%Y-%m-%d') + timedelta(days=6)
             response = self.tempo.get_timesheet_approvals(dateFrom=period_start, dateTo=date_to, teamId=team_id)
             _logger.info("%s", json.dumps(response, iterable_as_array=True))
-        return json.dumps(response, iterable_as_array=True)
+        return json.dumps(response[0], iterable_as_array=True)
