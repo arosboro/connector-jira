@@ -70,16 +70,16 @@ class JiraBackend(models.Model):
             user_binder = importer.binder_for('jira.res.users')
         # Pick the date range from the Tempo period.
         # In this way we make sure we affect only the dates we want.
-        date_from = result['period']['dateFrom']
-        date_to = result['period']['dateTo']
+        date_from = result['period']['from']
+        date_to = result['period']['to']
         approvals = result.get('approvals', [])
         mapping = defaultdict(list)
         for entry in approvals:
             user_data = entry['user']
             try:
-                user = user_binder.to_internal(user_data['key'], unwrap=True)
+                user = user_binder.to_internal(user_data['accountId'], unwrap=True)
             except ValueError:
-                _logger.error('User %(key)s not found' % user_data)
+                _logger.error('User %(accountId)s not found' % user_data)
                 continue
             mapping[entry['status']].append(user.id)
         for state, user_ids in mapping.items():
