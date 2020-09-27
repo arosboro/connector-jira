@@ -56,6 +56,20 @@ class JiraProjectTask(models.Model):
          "A binding already exists for this task and this backend."),
     ]
 
+    def _convert_to_cache(self, values, update=False, validate=True):
+        """ Convert the ``values`` dictionary into cached values.
+            :param update: whether the conversion is made for updating ``self``;
+                this is necessary for interpreting the commands of *2many fields
+            :param validate: whether values must be checked
+        """
+        fields = self._fields
+        target = self if update else self.browse([], self._prefetch)
+        return {
+            name: fields[name].convert_to_cache(value, target, validate=validate)
+            for name, value in values.items()
+            if name in fields
+        }
+
     def _is_linked(self):
         return self.mapped('jira_project_bind_id')._is_linked()
 
