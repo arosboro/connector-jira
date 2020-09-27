@@ -7,6 +7,7 @@ import requests
 from contextlib import contextmanager
 
 from odoo.addons.component.core import Component
+from odoo.addons.connector.exception import IDMissingInBackend
 
 _logger = logging.getLogger(__name__)
 
