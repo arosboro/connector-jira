@@ -27,7 +27,7 @@ class JiraBackend(models.Model):
         self.ensure_one()
         # tokens are only readable by connector managers
         backend = self.sudo()
-        _logger.print(backend.tempo_auth_token[3:8])
+        _logger.debug("Auth token is present: %s", backend.tempo_auth_token[3:8])
         return client.Tempo(
             auth_token=backend.tempo_auth_token,
             base_url='https://api.tempo.io/core/3',
