@@ -171,6 +171,21 @@ class AccountAnalyticLine(models.Model):
         store=True
     )
 
+    def _convert_to_cache(self, values, update=False, validate=True):
+        self.ensure_one()
+        """ Convert the ``values`` dictionary into cached values.
+            :param update: whether the conversion is made for updating ``self``;
+                this is necessary for interpreting the commands of *2many fields
+            :param validate: whether values must be checked
+        """
+        fields = self._fields
+        target = self if update else self.browse([self.id])
+        return {
+            name: fields[name].convert_to_cache(value, target, validate=validate)
+            for name, value in values.items()
+            if name in fields
+        }
+
     @api.depends(
         'jira_bind_ids.jira_issue_key',
     )
@@ -302,7 +317,11 @@ class AccountAnalyticLine(models.Model):
         return super().create(vals)
 
     def write(self, vals):
-        self._connector_jira_write_validate(vals)
+        if vals is list:
+            for val in vals:
+                self._connector_jira_write_validate(val)
+        if vals is dict:
+            self._connector_jira_write_validate(vals)
         return super().write(vals)
 
     def unlink(self):
