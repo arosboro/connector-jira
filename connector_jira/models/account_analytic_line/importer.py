@@ -74,7 +74,7 @@ class AnalyticLineMapper(Component):
     @mapping
     def author(self, record):
         jira_author = record['author']
-        jira_author_key = jira_author['key']
+        jira_author_key = jira_author['accountId']
         binder = self.binder_for('jira.res.users')
         user = binder.to_internal(jira_author_key, unwrap=True)
         if not user:
