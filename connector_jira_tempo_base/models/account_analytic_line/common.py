@@ -25,5 +25,5 @@ class WorklogAdapter(Component):
         with self.handle_tempo_404():
             dateFrom = datetime(1969, 12, 31, 19, 00, 00, 00000)
             dateTo = datetime.now()
-            response = self.tempo.get_worklogs(dateFrom, dateTo, worklogId=worklog_id)
+            response = self.tempo.get_worklogs(dateFrom, dateTo, jiraWorklogId=worklog_id)
         return json.dumps(response, iterable_as_array=True)
