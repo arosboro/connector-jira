@@ -40,14 +40,14 @@ class WorklogAdapter(Component):
 
     def tempo_timesheets_approval_read(self, worklog):
         account_id = worklog['author']['accountId']
-        url = self._tempo_timesheets_get_url('timesheet-approvals/user/' + account_id)
+        url = self._tempo_timesheets_get_url('timesheet-approvals/user/' + str(account_id))
         with self.handle_404():
             response = self.client._session.get(url)
         return response.json()
 
     def tempo_timesheets_approval_read_status_by_team(
             self, team_id, period_start):
-        url = self._tempo_timesheets_get_url('timesheet-approvals/team/' + team_id)
+        url = self._tempo_timesheets_get_url('timesheet-approvals/team/' + str(team_id))
         with self.handle_404():
             response = self.client._session.get(url, params={
                 'teamId': team_id,
