@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 def get_past_week_1st_day():
     today = datetime.today()
     date = today - timedelta(
-        days=today.weekday() % 7
+        days=today.weekday() + 1 % 7
     ) - timedelta(weeks=1)
     return date.strftime('%Y-%m-%d')
 

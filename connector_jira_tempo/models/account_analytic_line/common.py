@@ -7,7 +7,7 @@ from odoo.addons.component.core import Component
 
 import simplejson as json
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class AccountAnalyticLine(models.Model):
     _inherit = 'account.analytic.line'
@@ -35,6 +35,14 @@ class WorklogAdapter(Component):
                 self.tempo_timesheets_approval_read(worklog)
         return worklog
 
+    @staticmethod
+    def prior_week_end(self):
+        return datetime.now() - timedelta(days=((datetime.now().isoweekday() + 1) % 7))
+
+    @staticmethod
+    def prior_week_start(self):
+        return self.prior_week_end() - timedelta(days=6)
+
     # This one seems useless ATM.
     # def tempo_read_worklog(self, worklog):
     #     url = self._tempo_timesheets_get_url('worklogs')
@@ -44,14 +52,14 @@ class WorklogAdapter(Component):
     def tempo_timesheets_approval_read(self, worklog):
         account_id = worklog['author']['accountId']
         with self.handle_tempo_404():
-            date_from = datetime(1969, 12, 31, 19, 00, 00, 00000)
-            date_to = datetime.now()
+            date_from = self.prior_week_start()
+            date_to = self.prior_week_end()
             response = self.tempo.get_timesheet_approvals(dateFrom=date_from, dateTo=date_to, userId=account_id)
         return json.dumps(response, iterable_as_array=True)
 
     def tempo_timesheets_approval_read_status_by_team(
             self, team_id, period_start):
         with self.handle_tempo_404():
-            date_to = datetime.now()
+            date_to = period_start + timedelta(days=6)
             response = self.tempo.get_timesheet_approvals(dateFrom=period_start, dateTo=date_to, teamId=team_id)
         return json.dumps(response, iterable_as_array=True)
