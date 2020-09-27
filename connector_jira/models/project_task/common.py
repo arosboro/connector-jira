@@ -272,7 +272,11 @@ class ProjectTask(models.Model):
         return super().create(vals)
 
     def write(self, vals):
-        self._connector_jira_write_validate(vals)
+        if vals is list:
+            for val in vals:
+                self._connector_jira_write_validate(val)
+        if vals is dict:
+            self._connector_jira_write_validate(vals)
         return super().write(vals)
 
     def unlink(self):
