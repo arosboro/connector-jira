@@ -1,11 +1,11 @@
 requests==2.21.0
 jira==2.0.0
-tempo-api-python-client==0.3.0
 oauthlib==2.1.0
 requests-oauthlib==1.1.0
 requests-toolbelt==0.9.1
 PyJWT==1.7.1
 cryptography==2.6.1
+git+https://github.com/stanislavulrych/tempo-api-python-client.git@e56b79424ca3cc6fe9fef092e9d9e97c23ef41e7
 
 # for tests
 vcrpy==2.0.1
