@@ -6,6 +6,7 @@ requests-toolbelt==0.9.1
 PyJWT==1.7.1
 cryptography==2.6.1
 git+https://github.com/stanislavulrych/tempo-api-python-client.git@e56b79424ca3cc6fe9fef092e9d9e97c23ef41e7#egg=tempo-api-python-client
+simplejson=3.17.2
 
 # for tests
 vcrpy==2.0.1
