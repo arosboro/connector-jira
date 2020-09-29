@@ -81,7 +81,7 @@ class JiraProjectTask(models.Model):
             )
         return super().unlink()
 
-    @api.depends('jira_key')
+    @api.depends('jira_key', 'backend_id')
     def _compute_jira_issue_url(self):
         """Compute the external URL to JIRA."""
         for record in self:
