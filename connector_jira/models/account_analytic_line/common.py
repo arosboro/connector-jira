@@ -220,6 +220,7 @@ class AccountAnalyticLine(models.Model):
         """
         for record in self:
             if not record.jira_bind_ids:
+                record.jira_issue_url = False
                 continue
             main_binding = record.jira_bind_ids[0]
             record.jira_issue_url = main_binding.jira_issue_url
@@ -262,6 +263,7 @@ class AccountAnalyticLine(models.Model):
         """
         for record in self:
             if not record.jira_bind_ids:
+                record.jira_epic_issue_url = False
                 continue
             main_binding = record.jira_bind_ids[0]
             record.jira_epic_issue_url = main_binding.jira_epic_issue_url
