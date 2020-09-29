@@ -85,9 +85,10 @@ class JiraProjectTask(models.Model):
     def _compute_jira_issue_url(self):
         """Compute the external URL to JIRA."""
         for record in self:
-            record.jira_issue_url = record.backend_id.make_issue_url(
-                record.jira_key
-            )
+            if record.backend_id.id:
+                record.jira_issue_url = record.backend_id.make_issue_url(
+                    record.jira_key
+                )
 
 
 class ProjectTask(models.Model):
