@@ -13,7 +13,7 @@
             </thead>
             <tr t-foreach="timesheets" t-as="timesheet">
                 <td><t t-esc="timesheet.date" t-options='{"widget": "date"}'/></td>
-                <td><t t-esc="timesheet.jira_issue_key"/></td>
+                <td><t t-esc="timesheet.jira_issue_key"/><t t-if="timesheet.jira_issue_key == False" t-esc="timesheet.name"/></td>
                 <td><t t-esc="timesheet.employee_id.name"/></td>
                 <td class="text-right"><span t-field="timesheet.unit_amount" t-options='{"widget": "duration", "unit": "hour", "round": "minute"}'/></td>
             </tr>
