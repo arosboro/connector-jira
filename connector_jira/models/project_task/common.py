@@ -85,10 +85,12 @@ class JiraProjectTask(models.Model):
     def _compute_jira_issue_url(self):
         """Compute the external URL to JIRA."""
         for record in self:
-            if record.backend_id.id:
-                record.jira_issue_url = record.backend_id.make_issue_url(
-                    record.jira_key
-                )
+            if not record.backend_id.id or not record.jira_key:
+                record.jira_issue_url = False
+                continue
+            record.jira_issue_url = record.backend_id.make_issue_url(
+                record.jira_key
+            )
 
 
 class ProjectTask(models.Model):
@@ -181,6 +183,7 @@ class ProjectTask(models.Model):
         """
         for record in self:
             if not record.jira_bind_ids:
+                record.jira_issue_url = False
                 continue
             main_binding = record.jira_bind_ids[0]
             record.jira_issue_url = main_binding.jira_issue_url

@@ -108,12 +108,22 @@ class JiraAccountAnalyticLine(models.Model):
     def _compute_jira_issue_url(self):
         """Compute the external URL to JIRA."""
         for record in self:
-            record.jira_issue_url = self.backend_id.make_issue_url(
-                record.jira_issue_key
-            )
-            record.jira_epic_issue_url = self.backend_id.make_issue_url(
-                record.jira_epic_issue_key
-            )
+            if not record.backend_id.id:
+                record.jira_issue_url = False
+                record.jira_epic_issue_url = False
+                continue
+            if record.jira_issue_key:
+                record.jira_issue_url = self.backend_id.make_issue_url(
+                    record.jira_issue_key
+                )
+            else:
+                record.jira_issue_url = False
+            if record.jira_epic_issue_key:
+                record.jira_epic_issue_url = self.backend_id.make_issue_url(
+                    record.jira_epic_issue_key
+                )
+            else:
+                record.jira_epic_issue_url = False
 
     @job(default_channel='root.connector_jira.import')
     @related_action(action="related_action_jira_link")
